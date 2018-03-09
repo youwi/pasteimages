@@ -1,7 +1,7 @@
 package test;
 
 import org.jetbrains.annotations.TestOnly;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import static img2md.PasteImageFromClipboard.getLimitFileName;
 
