@@ -42,6 +42,7 @@ public class PasteImageFromClipboard extends AnAction {
         // deterimine save path for the image
         Editor ed = e.getData(PlatformDataKeys.EDITOR);
         if (ed == null) {
+           // FileEditorManager
             return;
         }
 
@@ -160,6 +161,36 @@ public class PasteImageFromClipboard extends AnAction {
     }
 
 
+    /**
+     *  abc.java --> abc.png
+     * @param src
+     * @return
+     */
+    public  static  String getLimitFileName(String src){
+        if(src==null) return null;
+        String[] list =src.split("\\.");
+        if(list.length==1) return src;
+        list[list.length-1]="";
+        return join(list,".");
+    }
+    public static  String join(String[] list, String conjunction)
+    {
+        StringBuilder sb = new StringBuilder();
+        boolean first = true;
+        for (String item : list)
+        {
+            if(item.equals("")) continue;
+            if (first)
+                first = false;
+            else
+                sb.append(conjunction);
+            sb.append(item);
+        }
+        return sb.toString();
+    }
+
+
+
     // for more examples see
 //    http://www.programcreek.com/java-api-examples/index.php?api=com.intellij.openapi.ui.DialogWrapper
     private static ImageInsertSettingsPanel showDialog(File curDocument, Dimension imgDim) {
@@ -194,13 +225,15 @@ public class PasteImageFromClipboard extends AnAction {
         PropertiesComponent propComp = PropertiesComponent.getInstance();
         String dirPattern = propComp.getValue("PI__DIR_PATTERN_FOR_" + curDocument.getPath());
         if (dirPattern == null) dirPattern = propComp.getValue("PI__LAST_DIR_PATTERN");
-        if (dirPattern == null) dirPattern = "." + DOC_BASE_NAME + "_images";
-
+        //if (dirPattern == null) dirPattern = "." + DOC_BASE_NAME + "_images";
+        dirPattern = "." ;
 
         contentPanel.getDirectoryField().setText(dirPattern);
 
 
-        contentPanel.getNameInput().setText(UUID.randomUUID().toString().substring(0, 8));
+        //contentPanel.getNameInput().setText(UUID.randomUUID().toString().substring(0, 8));
+        contentPanel.getNameInput().setText(getLimitFileName(curDocument.getName()));
+
         builder.setCenterPanel(contentPanel);
         builder.setDimensionServiceKey("GrepConsoleSound");
         builder.setTitle("Paste Image Settings");

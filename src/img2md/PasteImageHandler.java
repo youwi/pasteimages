@@ -57,7 +57,7 @@ public class PasteImageHandler extends EditorActionHandler {
             VirtualFile virtualFile = ((EditorEx) editor).getVirtualFile();
             if (virtualFile != null) {
                 FileType fileType = virtualFile.getFileType();
-                if ("Markdown".equals(fileType.getName())) {
+                //if ("Markdown".equals(fileType.getName())) {
                     Image imageFromClipboard = ImageUtils.getImageFromClipboard();
                     if (imageFromClipboard != null) {
                         assert caret == null : "Invocation of 'paste' operation for specific caret is not supported";
@@ -66,7 +66,7 @@ public class PasteImageHandler extends EditorActionHandler {
                         action.actionPerformed(event);
                         return;
                     }
-                }
+                //}
             }
         }
 

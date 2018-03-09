@@ -1,15 +1,15 @@
 <idea-plugin version="2">
-    <id>com.github.holgerbrandl.pasteimages/</id>
-    <name>Paste Images into Markdown</name>
+    <id>com.github.youwi.pasteimages</id>
+    <name>Paste Images as File</name>
     <version>1.1.2</version>
-    <vendor email="holgerbrandl@gmail.com" url="https://github.com/holgerbrandl/pasteimages"/>
+    <vendor email="holgerbrandl@gmail.com" url="https://github.com/youwi/pasteimages"/>
 
     <!--see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html-->
     <depends>com.intellij.modules.lang</depends>
 
 
     <description><![CDATA[
-        Paste images into MarkDown documents directly from clipboard<br>
+        Paste images into MarkDown( not only Markdown) documents directly from clipboard<br>
         Images files are deposited in a configurable directory relative to the markdown document.
         ]]></description>
 
