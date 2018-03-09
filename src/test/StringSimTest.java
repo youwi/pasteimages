@@ -7,6 +7,7 @@ import static img2md.PasteImageFromClipboard.getLimitFileName;
 
 /**
  * pasteimages
+ *
  * Created by yu on 2018/3/9.
  */
 public class StringSimTest {
