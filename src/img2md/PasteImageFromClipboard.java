@@ -113,7 +113,7 @@ public class PasteImageFromClipboard extends AnAction {
         if (!imageDir.exists() || !imageDir.isDirectory()) imageDir.mkdirs();
 
 
-        File imageFile = new File(imageDir, imageName + ".png");
+        File imageFile = new File(imageDir, imageName);
 
         // todo should we silently override the image if it is already present?
         save(bufferedImage, imageFile, "png");
@@ -230,9 +230,8 @@ public class PasteImageFromClipboard extends AnAction {
 
         contentPanel.getDirectoryField().setText(dirPattern);
 
-
         //contentPanel.getNameInput().setText(UUID.randomUUID().toString().substring(0, 8));
-        contentPanel.getNameInput().setText(getLimitFileName(curDocument.getName()));
+        contentPanel.getNameInput().setText(getLimitFileName(curDocument.getName())+".png");
 
         builder.setCenterPanel(contentPanel);
         builder.setDimensionServiceKey("GrepConsoleSound");
