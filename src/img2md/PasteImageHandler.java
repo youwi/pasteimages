@@ -50,6 +50,22 @@ public class PasteImageHandler extends EditorActionHandler {
         Presentation presentation = action.getTemplatePresentation().clone();
         return new AnActionEvent(null, context, ActionPlaces.UNKNOWN, presentation, ActionManager.getInstance(), 0);
     }
+    public boolean inTypes(String src){
+        String[] types={
+              "Markdown",
+              "JSON",
+              "Python",
+              "JavaScript",
+              "HTML",
+              "Java Source",
+        };
+        for(String type:types){
+            if( src.toLowerCase().equals(type.toLowerCase()))
+                return true;
+        }
+        return false;
+
+    }
 
     @Override
     public void doExecute(final Editor editor, Caret caret, final DataContext dataContext) {
@@ -57,7 +73,14 @@ public class PasteImageHandler extends EditorActionHandler {
             VirtualFile virtualFile = ((EditorEx) editor).getVirtualFile();
             if (virtualFile != null) {
                 FileType fileType = virtualFile.getFileType();
-                //if ("Markdown".equals(fileType.getName())) {
+                fileType.getDefaultExtension();
+                if(! fileType.isBinary()) {
+                    //if ("Markdown".equals(fileType.getName())
+                    //  || "Java Source".equals(fileType.getName()
+                    //  || "Python".equals(fileType.getName()
+                    //  || "JSON".equals(fileType.getName()
+                    //  || "JavaScript".equals(fileType.getName()
+                    // ) {
                     Image imageFromClipboard = ImageUtils.getImageFromClipboard();
                     if (imageFromClipboard != null) {
                         assert caret == null : "Invocation of 'paste' operation for specific caret is not supported";
@@ -66,7 +89,8 @@ public class PasteImageHandler extends EditorActionHandler {
                         action.actionPerformed(event);
                         return;
                     }
-                //}
+                    //}
+                }
             }
         }
 
